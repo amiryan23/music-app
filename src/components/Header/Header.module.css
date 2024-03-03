@@ -1,0 +1,98 @@
+.megaContainer {
+	width:100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap:25px;
+	padding: 15px;
+	/*position: sticky;
+	top: 0px;*/
+/*	bottom:0px;*/
+
+}
+
+.content1,.content2,.content3 {
+	flex:1 0 350px;
+}
+
+.content1{
+
+	display:flex;
+	justify-content: flex-start;
+}
+.content1 button{
+/*	align-self: flex-start;*/
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	
+}
+
+.content1 span {
+	flex: 1;
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	font-size: 36px;
+	color: whitesmoke;
+	
+}
+
+.content2{
+/*	align-self: center;*/
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+.miniContent1{
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+}
+
+.miniContent1 a {
+	color: ghostwhite;
+	text-decoration: none;
+	font-weight: bold;
+
+}
+
+.miniContent2{
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*.content3{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}*/
+
+.content3{
+	width: 100%;
+	height: auto;
+	border-radius: 30px;
+	background-color: rgba(60, 60, 60, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap:10px;
+	align-items: center;
+	padding: 10px;
+	border: 2px solid #4C0099;
+
+}
+
+@media screen and (max-width:430px){
+	.megaContainer{
+		padding: 0px;
+	}
+}

@@ -1,0 +1,52 @@
+.content1{
+color: floralwhite;
+font-weight: bold;
+}
+
+.content2{
+	width:100%;
+	height: 5px;
+	display: flex;
+	flex-direction: row;
+	color: floralwhite;
+	gap:5px;
+}
+
+
+
+.miniBlock1{
+	align-self: flex-start;
+}
+
+.miniBlock2{
+	width: 100%;
+	height: 5px;
+	border-radius: 7px;
+	background-color: #222;
+	cursor: pointer;
+	
+}
+
+.miniContent{
+/*	width: 50%;*/
+	height: 5px;
+	background-color: rgba(256, 256, 256, 0.7);
+	z-index: 1;
+	transition:200ms linear;
+}
+
+
+.content3 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	gap: 15px;
+}
+
+.content3 svg {
+	cursor: pointer;
+}
+
+.track{
+	display:none;
+}
