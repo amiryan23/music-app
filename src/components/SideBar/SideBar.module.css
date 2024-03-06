@@ -24,6 +24,7 @@
 	backdrop-filter: blur(5px);
 	border-start-end-radius: 20px;
 	border-end-end-radius: 20px;
+	z-index:99;
 }
 
 @keyframes animSideBar {

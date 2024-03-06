@@ -7,7 +7,7 @@ const SideBar = ({open,setOpen})=>{
 		setOpen(false)
 	},[setOpen])
 	return ReactDOM.createPortal(
-		<div className={s.Container}>
+		<div className={s.Container} onClick={handlePortalClose}>
 		<div className={s.megaContainer}>
 			<button onClick={handlePortalClose}></button>
 		</div>

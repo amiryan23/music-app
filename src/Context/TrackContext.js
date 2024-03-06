@@ -34,8 +34,13 @@ const MyContextProvider = ({ children }) => {
 const [playing,setPlaying] = useState(false)
 const [index,setIndex] = useState(0)
 const [playingSong,setPlayingSong] = useState(false)
+const [activeLink,setActiveLink] = useState('/')
 
 const song = useRef()
+
+  const changedPath = (path) =>{
+      setActiveLink(path)
+  }
 
  const handlerPlaying = ()=>{
   
@@ -82,7 +87,7 @@ const song = useRef()
  
 
   return (
-    <MyContext.Provider value={{ song,tracks, playingSong,setPlayingSong,setTracks ,playing ,setPlaying,handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,playThisSong }}>
+    <MyContext.Provider value={{ song,tracks, playingSong,setPlayingSong,setTracks ,playing ,setPlaying,handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,playThisSong,changedPath,activeLink }}>
       {children}
     </MyContext.Provider>
   );
