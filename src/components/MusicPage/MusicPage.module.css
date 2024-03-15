@@ -58,6 +58,7 @@
 	background: transparent;
 	border: none;
 	outline: none;
+
 }
 
 .content3 button svg {
@@ -82,6 +83,17 @@
 	opacity: 0;
 	transform: translateX(100px);
 	transition: 350ms;
+}
+
+.megaContent2 h5 {
+	color: whitesmoke;
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+
+.megaContent2 h5 svg{
+	font-size: 19px;
 }
 
 .content1,.content2{
@@ -132,6 +144,48 @@
 }
 
 .item3{
+	display:flex;
+	flex-direction:row;
+	gap:10px;
+	justify-content:center;
+	align-items:center;
+}
+
+.favoriteMusic button{
+	background-color:transparent;
+	border:none;
+	cursor:pointer;
+}
+
+.favoriteMusic button svg {
+	font-size:25px;
+/*	color:ghostwhite;*/
+	transition:150ms linear;
+}
+
+.unaddedMusic svg{
+	color:ghostwhite;
+}
+
+.addedMusic svg{
+	color:rgb(113, 92, 213);
+}
+
+
+.unaddedMusic svg:hover {
+	transform:scale(1.05);
+	color:rgb(113, 92, 213);
+	transition:150ms linear;
+}
+
+.addedMusic svg:hover {
+	transform:scale(1.05);
+	color:ghostwhite;
+	transition:150ms linear;
+}
+
+
+.saveMusic{
 	align-self: center;
 	display: flex;
 	flex-direction: column;
@@ -142,9 +196,14 @@
 
 }
 
-.item3 a svg{
+.saveMusic a svg{
 	color: whitesmoke;
 	font-size: 25px;
+}
+
+.saveMusic a svg:hover{
+	color:rgb(113, 92, 213);
+	transition:250ms linear;
 }
 
 
@@ -193,11 +252,17 @@
 	cursor: pointer;
 }
 
-.trackItem2{
+.trackItem2 {
 	align-self: center;
 	color: whitesmoke;
 	font-weight: bold;
 	font-size: 18px;
+}
+
+.trackItem2 a{
+	
+	color: whitesmoke;
+	
 }
 
 .animBlock1,.animBlock2,.animBlock3{
@@ -205,6 +270,13 @@
 	opacity: 1;
 	transform: translateX(0px) translateY(0px);
 	transition: 350ms;
+}
+
+.blockShadow{
+/*	box-shadow: inset 5px 5px 15px whitesmoke;*/
+/*background-color: rgba(256, 256, 256, 0.2);*/
+transform:scale(1.1);
+	transition: 250ms linear;
 }
 
 @media screen and (max-width:978px){
@@ -241,4 +313,6 @@
 		justify-content: center;
 		gap: 0;
 	}
+
+
 }

@@ -1,17 +1,26 @@
 import s from './Player.module.css'
 import { GrChapterPrevious,GrChapterNext  } from "react-icons/gr";
-import { FaPlay,FaPause  } from "react-icons/fa";
+import { FaPlay,FaPause,FaRandom  } from "react-icons/fa";
 import {useState,useEffect,useContext,useMemo,useRef,useCallback} from 'react'
 import axios from 'axios';
 import { MyContext } from './../../Context/TrackContext';
+import { Bars } from 'react-loader-spinner'
+import {Link} from 'react-router-dom'
+import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
+import { IoMdDownload } from "react-icons/io";
+
+
 
 
 const Player = ()=>{
-const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingSong, handlerPlaying,index,handlerNextMusic,handlerPrevMusic} = useContext(MyContext);
+const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingSong, handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite,changeRandom,randomMusic} = useContext(MyContext);
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
+const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
 	
 // const song = tracks.map(() => useRef());
+
+
 
 useEffect(() => {
 	song.current = null;
@@ -31,25 +40,67 @@ song.current = new Audio(tracks[index].song)
 
     if (song.current) {
       song.current.addEventListener('timeupdate', updateFormattedTime);
-
+    }
       return () => {
       	
       	if(song.current){
         song.current.removeEventListener('timeupdate', updateFormattedTime);
       }
       };
-    }
+    
   }, [index]);
+
+	useEffect(()=>{
+
+  	if(playingSong && playing){
+  		song.current.pause()
+      setTimeout(()=>{song.current.play()},0)		
+  	} 
+
+
+  },[playing,playingSong,index])
 
 
 
 	const newTracks = useMemo(()=>{
-		return tracks.map(m=> <><div key={m.id} className={s.content1}>{m.songName}</div>
+		return tracks.map(m=> <>
+			<div key={m.id} className={s.content1}>
+			<span className={s.miniItem1}></span>
+			<span className={s.miniItem2}>{m.songName}</span>
+			{playing ? <span className={s.miniItem1}> <Bars
+  height="20"
+  width="80"
+  color="floralwhite"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  /> </span> : <span className={s.miniItem1}></span>}</div>
 			<audio id={m.id} className={s.track} ref={song}  controls>
        <source src={m.song} type="audio/mp3" />
       		</audio>
       		</> )
 	},[tracks,setTracks,playing,index])
+
+	const playListTracks = useMemo(()=>{
+		return savedTracks.map(m=> <>
+			<div key={m.id} className={s.content1}>
+			<span className={s.miniItem1}></span>
+			<span className={s.miniItem2}>{m.songName}</span>
+			{playing ? <span className={s.miniItem1}> <Bars
+  height="20"
+  width="80"
+  color="floralwhite"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  /> </span> : <span className={s.miniItem1}></span>}</div>
+			<audio id={m.id} className={s.track} ref={song}  controls>
+       <source src={m.song} type="audio/mp3" />
+      		</audio>
+      		</> )
+	},[savedTracks,playing,index])
 
   const handleClickOnMiniContent = (event) => {
     const progressBar = event.currentTarget;
@@ -66,6 +117,20 @@ song.current = new Audio(tracks[index].song)
   	}
   },[playingSong])
 
+  useEffect(()=>{
+  	if(index != 0 && formattedTime === totalTime){
+  		handlerNextMusic()
+  		
+  		
+
+  	}
+  },[formattedTime])
+
+
+  // const handleNextPlaylistMusic = ()=>{
+  // 	setPlayListIndex((prevPlayListIndex)=> prevPlayListIndex - 1)
+  // }
+
 
 	return (
 			<>
@@ -79,6 +144,8 @@ song.current = new Audio(tracks[index].song)
 			<div className={s.miniBlock3}>{totalTime}</div>
 			</div>
 			<div className={s.content3}>
+				<div className={s.block1}></div>
+				<div className={s.block2}>
 				<GrChapterPrevious onClick={()=>{handlerPrevMusic()}} size="20" color="whitesmoke"/>
 				{playing 
 				? <FaPause onClick={()=>{
@@ -92,7 +159,24 @@ song.current = new Audio(tracks[index].song)
 				}
 				} size="20" color="whitesmoke"/> }
 				<GrChapterNext onClick={()=>{handlerNextMusic() 
-				console.log(song)}} size="20" color="whitesmoke"/>
+				}} size="20" color="whitesmoke"/>
+				</div>
+				<div className={s.block3}>
+				<span className={randomMusic ? `${s.randomActive} ${s.blockItem1}` : s.blockItem1}>
+				<button className={s.randomMusic} onClick={changeRandom}><FaRandom /></button>
+				</span>
+				<span className={s.favoriteMusic}>
+      {savedTracks.some(track => track.id === index)
+      	? <button className={s.addedMusic} title="Remove to favorite musics" onClick={()=>{removeMusicToFavorite(index)}}><MdOutlineFavorite/></button>
+      	: <button className={s.unaddedMusic} title="Add to favorite musics" onClick={()=>{saveMusicToFavorite(index)}}><MdFavoriteBorder/></button>
+      }
+      </span>
+      <span className={s.saveMusic}>
+      <Link title="Download" onClick={()=>{changedPath("/music/")}} to={`/music/${index}`}><IoMdDownload /></Link>
+      
+      </span>
+				
+				</div>
 			</div>
 			</>
 		)

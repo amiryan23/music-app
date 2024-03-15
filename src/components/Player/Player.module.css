@@ -1,7 +1,27 @@
 .content1{
+width:100%;
+/*height:20px;*/
 color: floralwhite;
 font-weight: bold;
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+gap:5px;
 }
+
+.content1 .miniItem1 {
+	width:80px;
+}
+
+.content1 .miniItem2 {
+	flex:1;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	flex-wrap:nowrap;
+}
+
+
 
 .content2{
 	width:100%;
@@ -37,8 +57,10 @@ font-weight: bold;
 
 
 .content3 {
+	width:100%;
 	display: flex;
 	flex-direction: row;
+	justify-content:space-evenly;
 	flex-wrap: nowrap;
 	gap: 15px;
 }
@@ -47,6 +69,136 @@ font-weight: bold;
 	cursor: pointer;
 }
 
+.block1{
+	width:200px;
+	height:auto;
+	flex:1;
+	align-self:center;
+	display:flex;
+	justify-content:center;
+}
+
+.block2{
+	width:auto;
+	height:auto;
+	
+	display: flex;
+	flex-direction: row;
+	justify-content:center;
+	flex-wrap: nowrap;
+	gap: 15px;
+	flex:1;
+	
+}
+
+
+
+.block3{
+	width:100%;
+	height:auto;
+	display:flex;
+	justify-content:flex-start;
+	gap:10px;
+	flex:1;
+}
+
+.blockItem1{
+	align-self:center;
+}
+
+.blockItem1 .randomMusic{
+	align-self:center;
+	background-color:transparent;
+	border:none;
+	cursor:pointer;
+}
+
+.randomMusic svg {
+		font-size:20px;
+	color:#999;
+	transition:150ms linear;
+}
+
+.randomActive svg {
+	color:#D596F2;
+	transition:150ms linear;
+}
+
+.randomMusic svg:hover {
+	transform:scale(1.05);
+	color:#D596F2;
+	transition:150ms linear;
+}
+
+.favoriteMusic button{
+	background-color:transparent;
+	border:none;
+	cursor:pointer;
+}
+
+.favoriteMusic button svg {
+	font-size:25px;
+/*	color:ghostwhite;*/
+	transition:150ms linear;
+}
+
+.unaddedMusic svg{
+	color:#999;
+}
+
+.addedMusic svg{
+	color:#D596F2;
+}
+
+
+.unaddedMusic svg:hover {
+	transform:scale(1.05);
+	color:#D596F2;
+	transition:150ms linear;
+}
+
+.addedMusic svg:hover {
+	transform:scale(1.05);
+	color:ghostwhite;
+	transition:150ms linear;
+}
+
+
+.saveMusic{
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	color:#999;
+	justify-content: center;
+	font-family: monospace;
+	font-size: 13px;
+
+}
+
+.saveMusic a svg{
+	color:#999;
+	font-size: 25px;
+}
+
+.saveMusic a svg:hover{
+	color:#D596F2;
+	transition:250ms linear;
+}
+
 .track{
 	display:none;
+}
+
+@media screen and (max-width:430px){
+	.content1 .miniItem2{
+		font-size:11px;
+	}
+
+	.block3{
+		gap:5px;
+	}
+
+	.randomMusic svg,.favoriteMusic button svg,.saveMusic a svg{
+		font-size:19px;
+	}
 }

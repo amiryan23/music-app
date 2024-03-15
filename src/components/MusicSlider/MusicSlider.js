@@ -2,10 +2,12 @@ import s from './MusicSlider.module.css'
 import { CgPlayTrackPrevR,CgPlayTrackNextR } from "react-icons/cg";
 import {useState,useEffect,useRef,useMemo,useContext} from 'react'
 import { MyContext } from './../../Context/TrackContext';
+import { GrFormNextLink } from "react-icons/gr";
+import {Link} from "react-router-dom"
 
 const MusicSlider = ()=>{
 	const [indexImg,setIndexImg] = useState(0)
- const {song, index , setIndex , tracks, setTracks , playing , setPlaying} = useContext(MyContext);
+ const {song, index , setIndex , tracks, setTracks , playing , setPlaying,changedPath} = useContext(MyContext);
 	const animSlider = useRef()
 
 	
@@ -14,16 +16,10 @@ const MusicSlider = ()=>{
   return tracks.map(m => (
     <div key={m.id} ref={animSlider} className={s.megaBlock} style={{backgroundImage:`url(${m.backG})`}}>
       <div className={s.miniContent1}>
-      <div className={s.miniBlock1}>{m.songName}</div>
+      <div className={s.miniBlock1}>{m.artist}</div>
       <div className={s.miniBlock2}>
         <span>====================</span>
-        <button onClick={
-        	()=>{
-        		setIndex(m.id)
-        		
-        		
-        	}
-        }>Play this song</button>
+       <Link onClick={()=>{changedPath("/artists/")}} to={`/artists/album/${m.artist}/${m.id}`}>See this album</Link> 
         <span>====================</span>
         </div>
       </div>

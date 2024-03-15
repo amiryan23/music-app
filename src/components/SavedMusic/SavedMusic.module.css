@@ -1,0 +1,218 @@
+.megaContainer{
+	width:100%;
+	min-height:100vh;
+	padding:15px;
+	overflow: hidden;
+}
+
+
+.container{
+	width:100%;
+	min-height: 100vh;
+	background-color: rgba(256, 256, 256, 0.1);
+	border-radius: 25px;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap:25px;
+	opacity: 0;
+	transform: translateY(-100px);
+	
+
+}
+
+.animBlock1{
+	opacity: 1;
+	transform: translateY(0px);
+	transition: 500ms;
+}
+
+.content1{
+	border-bottom: 2px solid whitesmoke;
+	padding: 10px;
+	color: whitesmoke;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.content2{
+	display: flex;
+	flex-direction: column;
+	gap:10px;
+}
+
+
+.miniBlock2{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 15px;
+	background-color: rgba(256, 256, 256, 0.1);
+	padding: 10px;
+	border-radius: 15px;
+}
+
+.playingStyleMusic{
+	background: rgb(60,41,147);
+background: radial-gradient(circle, rgba(60,41,147,0.5) 58%, rgba(25,28,38,0.5) 89%);
+transition:250ms linear;
+}
+
+
+.item1{
+	width: 75px;
+	height: 75px;
+	border: 2px solid whitesmoke;
+	border-radius: 7px;
+/*	flex: 1;*/
+	display: flex;
+	justify-content: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.item1 svg {
+	align-self: center;
+	color: whitesmoke;
+	font-size: 25px;
+	filter: drop-shadow(1px 1px 3px black);
+	cursor: pointer;
+	transition:150ms linear;
+}
+
+.item1 svg:hover{
+	color:rgb(113, 92, 213);
+	transition:150ms linear;
+}
+
+.item2{
+	align-self: center;
+	flex: 1;
+	color: whitesmoke;
+}
+
+.item3{
+		display:flex;
+	flex-direction:row;
+	gap:10px;
+	justify-content:center;
+	align-items:center;
+
+}
+
+.favoriteMusic button{
+	background-color:transparent;
+	border:none;
+	cursor:pointer;
+}
+
+.favoriteMusic button svg {
+	font-size:25px;
+/*	color:ghostwhite;*/
+	transition:150ms linear;
+}
+
+
+
+.addedMusic svg{
+	color:ghostwhite;
+}
+
+
+
+
+.addedMusic svg:hover {
+	transform:scale(1.05);
+	color:rgb(113, 92, 213);
+	transition:150ms linear;
+}
+
+.saveMusic{
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	color: whitesmoke;
+	justify-content: center;
+	font-family: monospace;
+	font-size: 13px;
+
+}
+
+.saveMusic a svg{
+	color: whitesmoke;
+	font-size: 25px;
+}
+
+.saveMusic a svg:hover{
+	color:rgb(113, 92, 213);
+	transition:250ms linear;
+}
+
+
+.miniBlock3{
+	align-self: center;
+}
+
+.miniBlock3 a{
+	padding:5px 25px 5px 25px;
+	background-color:transparent;
+	color:#999;
+	border:3px solid #999;
+	border-radius:7px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.miniBlock3 a:hover{
+	color:rgba(105, 250, 154, 1);
+
+	transition:250ms linear;
+}
+
+.notFound {
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	gap:10px;
+	color: #222;
+	font-size: 35px;
+	transition: 350ms linear;
+}
+
+.notFound a {
+	align-self: center;
+	font-size: 24px;
+	font-family: monospace;
+	text-decoration: none;
+	padding: 10px;
+	background-color: #transparent;
+	color: whitesmoke;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap:10px;
+	border: 2px solid whitesmoke;
+	border-radius: 15px;
+	transition: 150ms linear;
+
+
+}
+
+.notFound a:hover {
+	background-color:rgb(113, 92, 213);;
+	border: 2px solid #222;
+	color: #222;
+	transition: 150ms linear;
+}
+
+@media screen and (max-width:430px){
+	.notFound{
+		font-size: 20px;
+	}
+
+	.notFound a {
+		font-size: 20px;
+	}
+}

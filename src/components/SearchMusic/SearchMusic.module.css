@@ -1,3 +1,9 @@
+.megaContainer{
+	width:100%;
+	display: flex;
+	flex-direction: column;
+}
+
 .search{
 	width:100%;
 /*	height: 25px;*/
@@ -9,4 +15,93 @@
 	color: floralwhite;
 	font-weight: bold;
 	border: 2px solid #4C0099;
+}
+
+.container{
+	width: 40%;
+	height: 400px;
+	overflow-y: scroll;
+	position: absolute;
+	top: ;
+	left: ;
+	margin-top: 35px;
+	background-color: rgba(256, 256, 256, 0.8);
+	border-radius: 15px;
+	z-index: 33;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	
+}
+
+.miniBlock2{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 15px;
+}
+
+
+.item1{
+	width: 75px;
+	height: 75px;
+	border: 2px solid  #111;
+	border-radius: 7px;
+/*	flex: 1;*/
+	display: flex;
+	justify-content: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.item1 svg {
+	align-self: center;
+	color: whitesmoke;
+	font-size: 25px;
+	filter: drop-shadow(1px 1px 3px black);
+	cursor: pointer;
+}
+
+.item2{
+	align-self: center;
+	flex: 1;
+	color: #111;
+}
+
+.item2 a {
+/*	text-decoration:none;*/
+	color:#111;
+	font-weight:bold;
+}
+
+.item3{
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	color:  #111;
+	justify-content: center;
+	font-family: monospace;
+	font-size: 13px;
+
+}
+
+.item3 a svg{
+	color: #111;
+	font-size: 25px;
+}
+
+.notFound {
+/*	font-weight: bold;*/
+	font-size: 24px;
+}
+
+
+@media screen and (max-width:754px){
+	.container{
+		width: 100%;
+		height: 100vh;
+		left: 0;
+	}
 }

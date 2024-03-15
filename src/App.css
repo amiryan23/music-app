@@ -7,6 +7,15 @@
 user-select: none;
 }
 
+.loader {
+  width:100%;
+  min-height:70vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
 @media screen and (max-width:430px) {
   .App{
     padding:0;
