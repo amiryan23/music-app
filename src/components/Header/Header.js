@@ -1,7 +1,7 @@
 import s from './Header.module.css'
 import React,{useCallback,useContext,useState,useRef,useEffect} from 'react'
 import { TiThMenuOutline } from "react-icons/ti";
-import {NavLink} from 'react-router-dom'
+import {NavLink,Link} from 'react-router-dom'
 import Player from './../Player/Player'
 import SearchMusic from './../SearchMusic/SearchMusic'
 import { MyContext } from './../../Context/TrackContext';
@@ -10,6 +10,8 @@ import { FaMusic } from "react-icons/fa6";
 import { BiSolidAlbum } from "react-icons/bi";
 import { MdOutlineFavorite } from "react-icons/md";
 import { IoMdAlbums } from "react-icons/io";
+import logoMusic from './../../photo/logoMusic.png'
+import logoMusic3 from './../../photo/logoMusic3.png'
 
 const Header = ({open,setOpen})=>{
 
@@ -34,7 +36,9 @@ const Header = ({open,setOpen})=>{
 			<header className={s.megaContainer}>
 				<div className={s.content1}>
 				<button onClick={handlerPortalOpen}><TiThMenuOutline size="50" color="#999" /></button>
-				<span>MusicLogo</span>
+				<span onClick={()=>{changedPath("/")}}>
+				<Link to="/"><img src={logoMusic3} width="200px"/></Link>
+				</span>
 				</div>
 				<div className={s.content2}>
 				<div className={s.miniContent1}>

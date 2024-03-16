@@ -11,45 +11,45 @@ const Home = ()=>{
 	 	const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song} = useContext(MyContext);
 
 
-	 	useEffect(() => {
-  const preloadMedia = () => {
-    const mediaPromises = tracks.map((track) => {
-      return Promise.all([
-        new Promise((resolve, reject) => {
-          const image = new Image();
-          image.src = track.backG;
-          image.onload = resolve;
-          image.onerror = reject;
-        }),
-        new Promise((resolve, reject) => {
-          const artist = new Image();
-          artist.src = track.artistPhoto
-          artist.onload = resolve;
-          artist.onerror = reject;
-        })
-      ]);
-    });
-
-    Promise.all(mediaPromises)
-      .then(() => {
-    
-      	setLoader(false);
-   
-      })
-      .catch((error) => {
-        console.error('Failed to preload media:', error);
-     
-       	setLoader(false);
-   
-      });
-  };
-
-  preloadMedia();
-}, [tracks]);
+// 	 	useEffect(() => {
+//   const preloadMedia = () => {
+//     const mediaPromises = tracks.map((track) => {
+//       return Promise.all([
+//         new Promise((resolve, reject) => {
+//           const image = new Image();
+//           image.src = track.backG;
+//           image.onload = resolve;
+//           image.onerror = reject;
+//         }),
+//         new Promise((resolve, reject) => {
+//           const artist = new Image();
+//           artist.src = track.artistPhoto
+//           artist.onload = resolve;
+//           artist.onerror = reject;
+//         })
+//       ]);
+//     });
+// 
+//     Promise.all(mediaPromises)
+//       .then(() => {
+//     
+//       	setLoader(false);
+//    
+//       })
+//       .catch((error) => {
+//         console.error('Failed to preload media:', error);
+//      
+//        	setLoader(false);
+//    
+//       });
+//   };
+// 
+//   preloadMedia();
+// }, [tracks]);
 
 	return (
 		<>
-		{loader 
+		{!loader 
 
 		? 
      

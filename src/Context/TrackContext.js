@@ -104,6 +104,7 @@ const song = useRef()
   if(index < tracks.length - 1){
     if(randomMusic){
       setIndex((prevIndex)=>randomMusicIndex)
+      
     } else {
     setIndex((prevIndex)=>index + 1)
   }
@@ -113,9 +114,22 @@ const song = useRef()
       setPlaying((prevPlaying)=>false)
     }
   }
+
+  if(index === tracks.length - 1){
+    setIndex((prevIndex)=>0)
+     if(randomMusic){
+      setIndex((prevIndex)=>randomMusicIndex)
+    }
+     if(playing){
+      setTimeout(()=>{song.current.play()},10)
+    } else {
+      setPlaying((prevPlaying)=>false)
+    }
+  }
  
     song.current.pause()
     song.current.currentTime = 0
+
 
   
  }
@@ -130,7 +144,14 @@ const song = useRef()
     }
   }
 
-  
+    if(index === 0){
+    setIndex((prevIndex)=>tracks.length - 1)
+    if(playing){
+      setTimeout(()=>{song.current.play()},10)
+    } else {
+      setPlaying((prevPlaying)=>false)
+    }
+  }
   song.current.pause()
   song.current.currentTime = 0
  }
