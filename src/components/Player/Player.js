@@ -18,7 +18,16 @@ const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingS
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
 const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
-const [loading,setLoading] = useState(false)
+const [loading,setLoading] = useState(true)
+// const [loadingStates, setLoadingStates] = useState(savedTracks.map(() => false));
+
+// const handleLoadedData = (index) => {
+//   setLoadingStates(prevStates => {
+//     const newState = [...prevStates];
+//     newState[index] = true;
+//     return newState;
+//   });
+// };
 	
 // const song = tracks.map(() => useRef());
 
@@ -38,17 +47,32 @@ song.current = new Audio(tracks[index].song)
       setTotalTime(`${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`);
     };
  	
- 	
+ 		const loaderTrue = ()=>{
+ 			  setLoading(false);
+  console.log("metadata loaded");
+ 		}
+
+ 		const loaderFalse = ()=>{
+ 			 setLoading(true);
+      console.log("loaded");
+ 		}
 
     if (song.current) {
       song.current.addEventListener('timeupdate', updateFormattedTime);
-    }
+      song.current.addEventListener("loadeddata", loaderFalse);
+
+  // Устанавливаем обработчик события onCanPlayThrough при каждом изменении треков или индекса
+song.current.addEventListener("loadedmetadata",loaderTrue)
+}
       return () => {
       	
       	if(song.current){
         song.current.removeEventListener('timeupdate', updateFormattedTime);
-      }
-      };
+        song.current.removeEventListener("loadeddata",loaderTrue);
+
+    song.current.removeEventListener("loadedmetadata",loaderFalse);
+      
+      }};
     
   }, [index]);
 
@@ -80,50 +104,42 @@ song.current = new Audio(tracks[index].song)
   /> </span> : <span className={s.miniItem1}></span>}</div>
 			<audio id={m.id} className={s.track} ref={song} 
 			preload="auto"
-   onLoadedData={() => {
-    setLoading(false);
-    console.log("loaded");
-  }}
-  onCanPlayThrough={() => {
-    setLoading(true);
-    console.log("can play through");
-  }}
-   controls>
+      controls>
        <source src={m.song} type="audio/mp3" />
       		</audio>
       		</> )
 	},[tracks,setTracks,playing,index,loading])
 
-	const playListTracks = useMemo(()=>{
-		return savedTracks.map(m=> <>
-			<div key={m.id} className={s.content1}>
-			<span className={s.miniItem1}></span>
-			<span className={s.miniItem2}>{m.songName}</span>
-			{playing ? <span className={s.miniItem1}> <Bars
-  height="20"
-  width="80"
-  color="floralwhite"
-  ariaLabel="bars-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  visible={true}
-  /> </span> : <span className={s.miniItem1}></span>}</div>
-			<audio id={m.id} className={s.track} ref={song} 
-			 	preload="auto"
-   onLoadedData={() => {
-    setLoading(false);
-    console.log("loaded");
-  }}
-  onCanPlayThrough={() => {
-    setLoading(true);
-    console.log("can play through");
-  }}
-
-			 controls>
-       <source  src={m.song} type="audio/mpeg" />
-      		</audio>
-      		</> )
-	},[savedTracks,playing,index,loading])
+// 	const playListTracks = useMemo(()=>{
+// 		return savedTracks.map(m=> <>
+// 			<div key={m.id} className={s.content1}>
+// 			<span className={s.miniItem1}></span>
+// 			<span className={s.miniItem2}>{m.songName}</span>
+// 			{playing ? <span className={s.miniItem1}> <Bars
+//   height="20"
+//   width="80"
+//   color="floralwhite"
+//   ariaLabel="bars-loading"
+//   wrapperStyle={{}}
+//   wrapperClass=""
+//   visible={true}
+//   /> </span> : <span className={s.miniItem1}></span>}</div>
+// 			<audio id={m.id} className={s.track} ref={song} 
+// 			 	preload="auto"
+//    onLoadedData={() => {
+//     setLoading(false);
+//     console.log("loaded");
+//   }}
+//   onCanPlayThrough={() => {
+//     setLoading(true);
+//     console.log("can play through");
+//   }}
+// 
+// 			 controls>
+//        <source  src={m.song} type="audio/mpeg" />
+//       		</audio>
+//       		</> )
+// 	},[savedTracks,playing,index,loading])
 
   const handleClickOnMiniContent = (event) => {
     const progressBar = event.currentTarget;
@@ -170,7 +186,7 @@ song.current = new Audio(tracks[index].song)
 				<div className={s.block1}></div>
 				<div className={s.block2}>
 				<GrChapterPrevious onClick={()=>{handlerPrevMusic()}} size="20" color="whitesmoke"/>
-				{loading 
+				{loading
 				? playing 
 				? <FaPause onClick={()=>{
 					setPlaying((prevPlaying)=>!prevPlaying)
