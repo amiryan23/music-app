@@ -18,7 +18,7 @@ const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingS
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
 const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
-const [loading,setLoading] = useState(true)
+const [loading,setLoading] = useState(false)
 // const [loadingStates, setLoadingStates] = useState(savedTracks.map(() => false));
 
 // const handleLoadedData = (index) => {
@@ -46,31 +46,32 @@ song.current = new Audio(tracks[index].song)
       const totalSeconds = Math.floor(song.current.duration % 60);
       setTotalTime(`${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`);
     };
+
  	
- 		const loaderTrue = ()=>{
- 			  setLoading(false);
-  console.log("metadata loaded");
- 		}
+  const handleunLoadedData = () => {
+    setLoading(false)
+    
+  };
 
- 		const loaderFalse = ()=>{
- 			 setLoading(true);
-      console.log("loaded");
- 		}
+ 	  const handleLoadedData = () => {
+    setLoading(true)
+   
+  };
 
+ 
     if (song.current) {
       song.current.addEventListener('timeupdate', updateFormattedTime);
-      song.current.addEventListener("loadeddata", loaderFalse);
-
-  // Устанавливаем обработчик события onCanPlayThrough при каждом изменении треков или индекса
-song.current.addEventListener("loadedmetadata",loaderTrue)
+      song.current.addEventListener('loadstart', handleunLoadedData);
+     song.current.addEventListener('canplaythrough', handleLoadedData);
+  
 }
       return () => {
       	
       	if(song.current){
         song.current.removeEventListener('timeupdate', updateFormattedTime);
-        song.current.removeEventListener("loadeddata",loaderTrue);
-
-    song.current.removeEventListener("loadedmetadata",loaderFalse);
+        song.current.removeEventListener('loadstart', handleLoadedData);
+      song.current.removeEventListener('canplaythrough', handleLoadedData);
+    
       
       }};
     
