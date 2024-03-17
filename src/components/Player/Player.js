@@ -8,6 +8,7 @@ import { Bars } from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 import { IoMdDownload } from "react-icons/io";
+import { ColorRing } from 'react-loader-spinner'
 
 
 
@@ -17,6 +18,7 @@ const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingS
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
 const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
+const [loading,setLoading] = useState(false)
 	
 // const song = tracks.map(() => useRef());
 
@@ -76,11 +78,21 @@ song.current = new Audio(tracks[index].song)
   wrapperClass=""
   visible={true}
   /> </span> : <span className={s.miniItem1}></span>}</div>
-			<audio id={m.id} className={s.track} ref={song}  controls>
+			<audio id={m.id} className={s.track} ref={song} 
+			preload="auto"
+   onLoadedData={() => {
+    setLoading(false);
+    console.log("loaded");
+  }}
+  onCanPlayThrough={() => {
+    setLoading(true);
+    console.log("can play through");
+  }}
+   controls>
        <source src={m.song} type="audio/mp3" />
       		</audio>
       		</> )
-	},[tracks,setTracks,playing,index])
+	},[tracks,setTracks,playing,index,loading])
 
 	const playListTracks = useMemo(()=>{
 		return savedTracks.map(m=> <>
@@ -96,11 +108,22 @@ song.current = new Audio(tracks[index].song)
   wrapperClass=""
   visible={true}
   /> </span> : <span className={s.miniItem1}></span>}</div>
-			<audio id={m.id} className={s.track} ref={song}  controls>
-       <source src={m.song} type="audio/mp3" />
+			<audio id={m.id} className={s.track} ref={song} 
+			 	preload="auto"
+   onLoadedData={() => {
+    setLoading(false);
+    console.log("loaded");
+  }}
+  onCanPlayThrough={() => {
+    setLoading(true);
+    console.log("can play through");
+  }}
+
+			 controls>
+       <source  src={m.song} type="audio/mpeg" />
       		</audio>
       		</> )
-	},[savedTracks,playing,index])
+	},[savedTracks,playing,index,loading])
 
   const handleClickOnMiniContent = (event) => {
     const progressBar = event.currentTarget;
@@ -147,7 +170,8 @@ song.current = new Audio(tracks[index].song)
 				<div className={s.block1}></div>
 				<div className={s.block2}>
 				<GrChapterPrevious onClick={()=>{handlerPrevMusic()}} size="20" color="whitesmoke"/>
-				{playing 
+				{loading 
+				? playing 
 				? <FaPause onClick={()=>{
 					setPlaying((prevPlaying)=>!prevPlaying)
 					handlerPlaying()
@@ -157,7 +181,16 @@ song.current = new Audio(tracks[index].song)
 					setPlaying((prevPlaying)=>!prevPlaying)
 					handlerPlaying()
 				}
-				} size="20" color="whitesmoke"/> }
+				} size="20" color="whitesmoke"/> 
+				: <ColorRing
+				  visible={true}
+				  height="20"
+				  width="20"
+				  ariaLabel="color-ring-loading"
+				  wrapperStyle={{}}
+				  wrapperClass="color-ring-wrapper"
+				  colors={['#999', '#222']}
+				  />	}
 				<GrChapterNext onClick={()=>{handlerNextMusic() 
 				}} size="20" color="whitesmoke"/>
 				</div>
