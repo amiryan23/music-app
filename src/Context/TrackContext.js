@@ -57,6 +57,8 @@ const [addedFavorite,setAddedFavorite] = useState(false)
 const [cookies, setCookie] = useCookies(['activeLink']);
 const [activeLink,setActiveLink] = useState(cookies.activeLink ? cookies.activeLink : '/')
 const [randomMusic,setRandomMusic] = useState(false)
+const [loaderMusic,setLoaderMusic] = useState(false)
+const [loaderImage,setLoaderImage] = useState(false)
 
 const song = useRef()
 
@@ -174,7 +176,7 @@ const song = useRef()
  
 
   return (
-    <MyContext.Provider value={{ song,tracks, playingSong,setPlayingSong,setTracks ,playing ,setPlaying,handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,playThisSong,changedPath,activeLink,savedTracks,setSavedTracks,saveMusicToFavorite,removeMusicToFavorite,addedFavorite,changeRandom,randomMusic}}>
+    <MyContext.Provider value={{ song,tracks, playingSong,setPlayingSong,setTracks ,playing ,setPlaying,handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,changedPath,activeLink,savedTracks,setSavedTracks,saveMusicToFavorite,removeMusicToFavorite,addedFavorite,changeRandom,randomMusic,loaderMusic,setLoaderMusic,loaderImage,setLoaderImage}}>
       {children}
     </MyContext.Provider>
   );

@@ -2,11 +2,12 @@ import s from './ArtistPage.module.css'
 import { MyContext } from './../../Context/TrackContext';
 import {useState,useEffect,useRef,useContext} from 'react'
 import {useParams,Link} from "react-router-dom"
+import { ColorRing } from 'react-loader-spinner'
 
 
 const ArtistPage = ()=>{
-	const { activeLink,playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song} = useContext(MyContext);
-
+	const { activeLink,playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,loaderImage,setLoaderImage} = useContext(MyContext);
+	
 	const animBlock1 = useRef()
 
 	const {id} = useParams()
@@ -24,14 +25,22 @@ const ArtistPage = ()=>{
 		}
 	},[])
 	
-// 	useEffect(()=>{
-// 
-//   	if(playingSong && playing){
-//   		song.current.pause()
-//       setTimeout(()=>{song.current.play()},0)		
-//   		
-//   	}
-//   },[playing,playingSong,index])
+useEffect(() => {
+    if(!loaderImage){
+    const preloadImage = () => {
+      tracks.forEach(track => {
+        const image = new Image(track.artistPhoto);
+        image.preload = 'auto'; 
+        setTimeout(()=>{setLoaderImage(true)},500)
+      });
+    };
+
+    preloadImage(); 
+  }
+    return () => {
+      
+    };
+  }, []);
 
 	const uniqueArtists = tracks.filter((track, index) => {
   return (
@@ -40,9 +49,20 @@ const ArtistPage = ()=>{
 });
 	
 	const artistsArray = uniqueArtists.map(m=> <div key={m.id} className={s.container}>
-		<Link to={`/artists/album/${m.artist}/${m.id}`} ><div className={s.content1} style={{backgroundImage:`url(${m.artistPhoto}`}}></div></Link>
+		{loaderImage 
+		? <Link to={`/artists/album/${m.artist}/${m.id}`} ><div className={s.content1} style={{backgroundImage:`url(${m.artistPhoto}`}}></div></Link>
+		: <div className={s.content1}> <ColorRing
+				  visible={true}
+				  height="40"
+				  width="40"
+				  ariaLabel="color-ring-loading"
+				  wrapperStyle={{}}
+				  wrapperClass="color-ring-wrapper"
+				  colors={['#999', '#222']}
+				  /> </div> }
 		<div className={s.content2}>{m.artist}</div>
 	</div>)
+
 	return(
 		<main className={s.megaContainer}>
 		<div className={s.megaContent} ref={animBlock1}>

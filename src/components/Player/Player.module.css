@@ -126,7 +126,7 @@ gap:5px;
 
 .randomMusic svg:hover {
 	transform:scale(1.05);
-	color:#D596F2;
+/*	color:#D596F2;*/
 	transition:150ms linear;
 }
 

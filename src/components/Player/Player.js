@@ -18,18 +18,8 @@ const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingS
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
 const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
-const [loading,setLoading] = useState(false)
-// const [loadingStates, setLoadingStates] = useState(savedTracks.map(() => false));
+const [loading,setLoading] = useState(true)
 
-// const handleLoadedData = (index) => {
-//   setLoadingStates(prevStates => {
-//     const newState = [...prevStates];
-//     newState[index] = true;
-//     return newState;
-//   });
-// };
-	
-// const song = tracks.map(() => useRef());
 
 
 
@@ -167,9 +157,6 @@ song.current = new Audio(tracks[index].song)
   },[formattedTime])
 
 
-  // const handleNextPlaylistMusic = ()=>{
-  // 	setPlayListIndex((prevPlayListIndex)=> prevPlayListIndex - 1)
-  // }
 
 
 	return (
