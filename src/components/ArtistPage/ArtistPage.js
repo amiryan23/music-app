@@ -1,11 +1,11 @@
 import s from './ArtistPage.module.css'
 import { MyContext } from './../../Context/TrackContext';
-import {useState,useEffect,useRef,useContext} from 'react'
+import React,{useState,useEffect,useRef,useContext} from 'react'
 import {useParams,Link} from "react-router-dom"
 import { ColorRing } from 'react-loader-spinner'
 
 
-const ArtistPage = ()=>{
+const ArtistPage = React.memo(()=>{
 	const { activeLink,playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,loaderImage,setLoaderImage} = useContext(MyContext);
 	
 	const animBlock1 = useRef()
@@ -14,7 +14,7 @@ const ArtistPage = ()=>{
 	const {name} = useParams()
 
 	useEffect(()=>{
-		
+		window.scrollTo(0,0)
 		let timer = setTimeout(()=>{animBlock1.current.classList.add(s.animBlock1)},0)
 
 		return ()=>{
@@ -70,6 +70,6 @@ useEffect(() => {
 		</div>
 		</main>
 		)
-}
+})
 
 export default ArtistPage

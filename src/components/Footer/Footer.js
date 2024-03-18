@@ -1,9 +1,10 @@
 import s from './Footer.module.css'
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaGithub,FaTelegram } from "react-icons/fa";
+import React from 'react'
 
 
-const Footer = ()=>{
+const Footer = React.memo(()=>{
 	return (
 		<footer className={s.megaContainer}>
 		<div className={s.megaContent}>
@@ -25,7 +26,7 @@ const Footer = ()=>{
 			<div className={s.content2}>
 				<div className={s.miniBlock1}><h2>Opensource in github</h2></div>
 				<div className={s.miniBlock2}>
-				<a href="#" target="_blank">www.github.com</a>
+				<a href="https://github.com/amiryan23/music-app" target="_blank">https://github.com/amiryan23/music-app</a>
 				</div>
 			</div>
 			<div className={s.content3}>
@@ -41,6 +42,6 @@ const Footer = ()=>{
 		</div>
 		</footer>
 		)
-}
+})
 
 export default Footer

@@ -1,32 +1,37 @@
 import MusicSlider  from './../MusicSlider/MusicSlider'
 import MusicHome from './../MusicHome/MusicHome'
-import {useState,useEffect,useContext} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import { MyContext } from './../../Context/TrackContext';
 import { Bars } from 'react-loader-spinner'
 
 
 
-const Home = ()=>{
+const Home = React.memo(()=>{
 	 
-	 	const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,loaderMusic,setLoaderMusic} = useContext(MyContext);
+	 	const { playing,setPlaying,tracks,playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,loaderMusic,setLoaderMusic} = useContext(MyContext);
 
 
-  useEffect(() => {
-    if(!loaderMusic){
-    const preloadTracks = () => {
-      tracks.forEach(track => {
-        const audio = new Audio(track.song);
-        audio.preload = 'auto'; 
-        setTimeout(()=>{setLoaderMusic(true)},500)
-      });
-    };
+//   useEffect(() => {
+//     if(!loaderMusic){
+//     const preloadTracks = () => {
+//       tracks.forEach(track => {
+//         const audio = new Audio(track.song);
+//         audio.preload = 'auto'; 
+//         setTimeout(()=>{setLoaderMusic(true)},500)
+//       });
+//     };
+// 
+//     preloadTracks(); 
+//   }
+// 
+//  
+//     return () => {
+//       
+//     };
+//   }, []);
 
-    preloadTracks(); 
-  }
-    return () => {
-      
-    };
-  }, []);
+
+
 
 
 	return (
@@ -54,6 +59,6 @@ const Home = ()=>{
 		}
 		</>
 		)
-}
+})
 
 export default Home 

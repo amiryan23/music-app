@@ -1,7 +1,7 @@
 import s from './Player.module.css'
 import { GrChapterPrevious,GrChapterNext  } from "react-icons/gr";
 import { FaPlay,FaPause,FaRandom  } from "react-icons/fa";
-import {useState,useEffect,useContext,useMemo,useRef,useCallback} from 'react'
+import React,{useState,useEffect,useContext,useMemo,useRef,useCallback} from 'react'
 import axios from 'axios';
 import { MyContext } from './../../Context/TrackContext';
 import { Bars } from 'react-loader-spinner'
@@ -13,7 +13,7 @@ import { ColorRing } from 'react-loader-spinner'
 
 
 
-const Player = ()=>{
+const Player = React.memo(()=>{
 const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingSong, handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite,changeRandom,randomMusic} = useContext(MyContext);
 const [formattedTime, setFormattedTime] = useState('0:00');
 const [totalTime, setTotalTime] = useState('0:00');
@@ -21,7 +21,7 @@ const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
 const [loading,setLoading] = useState(true)
 
 
-     const handleClickOnMiniContent = (event) => {
+     const handleClickOnMiniContent = useMemo(() =>  (event) => {
     const progressBar = event.currentTarget;
     const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
     const percentage = clickPosition / progressBar.clientWidth;
@@ -29,27 +29,25 @@ const [loading,setLoading] = useState(true)
       if (song.current.readyState >= 4){
           song.current.currentTime = newTime;
         }
-  };
+  }, [song.current,index]);
+
+  const updateFormattedTime = useMemo(() => () => {
+    const currentMinutes = Math.floor(song.current.currentTime / 60);
+    const currentSeconds = Math.floor(song.current.currentTime % 60);
+    setFormattedTime(`${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`);
+
+    const totalMinutes = Math.floor(song.current.duration / 60);
+    const totalSeconds = Math.floor(song.current.duration % 60);
+    setTotalTime(`${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`);
+  }, [song.current,index]);
 
 useEffect(() => {
 	song.current = null;
 song.current = new Audio(tracks[index].song)
-// song.current.load()
 
-   	 const updateFormattedTime = () => {
-      const currentMinutes = Math.floor(song.current.currentTime / 60);
-      const currentSeconds = Math.floor(song.current.currentTime % 60);
-      setFormattedTime(`${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`);
 
-      const totalMinutes = Math.floor(song.current.duration / 60);
-      const totalSeconds = Math.floor(song.current.duration % 60);
-      setTotalTime(`${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`);
-    };
-
- 	
-
- 	
-  const handleunLoadedData = () => {
+   	 
+ const handleunLoadedData = () => {
     setLoading(false)
     
   };
@@ -64,7 +62,8 @@ song.current = new Audio(tracks[index].song)
       song.current.addEventListener('timeupdate', updateFormattedTime);
       song.current.addEventListener('loadstart', handleunLoadedData);
      song.current.addEventListener('canplay', handleLoadedData);
-     // song.current.addEventListener('durationchange', handleClickOnMiniContent);
+     song.current.addEventListener('loadedmetadata', handleLoadedData);
+  
   
 }
       return () => {
@@ -73,7 +72,8 @@ song.current = new Audio(tracks[index].song)
         song.current.removeEventListener('timeupdate', updateFormattedTime);
         song.current.removeEventListener('loadstart', handleLoadedData);
       song.current.removeEventListener('canplay', handleLoadedData);
-      // song.current.removeEventListener('durationchange', handleClickOnMiniContent);
+      song.current.removeEventListener('loadedmetadata', handleLoadedData);
+      
     
       
       }};
@@ -112,7 +112,7 @@ song.current = new Audio(tracks[index].song)
        <source src={m.song} type="audio/mp3" />
       		</audio>
       		</> )
-	},[tracks,setTracks,playing,index,loading])
+	},[tracks,playing,index,loading])
 
 
 
@@ -126,7 +126,7 @@ song.current = new Audio(tracks[index].song)
   },[playingSong])
 
   useEffect(()=>{
-  	if(index != 0 && formattedTime === totalTime){
+  	if(formattedTime === totalTime){
   		handlerNextMusic()
   		
   		
@@ -195,6 +195,6 @@ song.current = new Audio(tracks[index].song)
 			</div>
 			</>
 		)
-}
+})
 
 export default Player

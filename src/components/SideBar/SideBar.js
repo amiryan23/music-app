@@ -1,8 +1,8 @@
 import s from './SideBar.module.css'
 import ReactDOM from 'react-dom';
-import {useCallback} from 'react'
+import React,{useCallback} from 'react'
 
-const SideBar = ({open,setOpen})=>{
+const SideBar = React.memo(({open,setOpen})=>{
 	const handlePortalClose = useCallback(()=>{
 		setOpen(false)
 	},[setOpen])
@@ -14,6 +14,6 @@ const SideBar = ({open,setOpen})=>{
 		</div>,
     document.getElementById('sidebar-root')
 		)
-}
+})
 
 export default SideBar

@@ -1,13 +1,13 @@
 import s from './ArtistAlbum.module.css'
 import {useParams,Link} from "react-router-dom"
-import {useState,useEffect,useRef,useContext} from 'react'
+import React,{useState,useEffect,useRef,useContext} from 'react'
 import { MyContext } from './../../../Context/TrackContext';
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { FaPlay,FaPause  } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 
-const ArtistAlbum = ()=>{
+const ArtistAlbum = React.memo(()=>{
 const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
 const [playingIndex, setPlayingIndex] = useState(null);
 	const {id} = useParams()
@@ -105,6 +105,6 @@ setPlayingIndex((prevPlayingIndex)=>index)
 			</div>
 		</main>
 		)
-}
+})
 
 export default ArtistAlbum

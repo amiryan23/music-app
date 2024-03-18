@@ -13,23 +13,17 @@ import { IoMdAlbums } from "react-icons/io";
 import logoMusic from './../../photo/logoMusic.png'
 import logoMusic3 from './../../photo/logoMusic3.png'
 
-const Header = ({open,setOpen})=>{
+const Header = React.memo(({open,setOpen})=>{
 
 	const {changedPath,activeLink,addedFavorite} = useContext(MyContext);
 
-	// const [activeLink,setActiveLink] = useState('/')
+	
 
   const handlerPortalOpen = useCallback(() => {
     setOpen(true);
   }, [setOpen]);
 
-//   const notific = useRef()
-// 
-//   useEffect(()=>{
-//   	if(addedFavorite){
-//   		notific.current.classList.add(s.notific)
-//   	} else (notific.current.classList.remove(s.notific))
-//   },[addedFavorite])
+
 
  
 	return(
@@ -78,6 +72,6 @@ const Header = ({open,setOpen})=>{
 				</div>
 			</header>
 		)
-}
+})
 
 export default Header;

@@ -1,6 +1,6 @@
 import s from './MusicItem.module.css'
 import {useParams,Link} from "react-router-dom"
-import {useState,useContext,useRef,useEffect} from 'react'
+import React,{useState,useContext,useRef,useEffect} from 'react'
 import { MyContext } from './../../../Context/TrackContext';
 import { IoMdDownload } from "react-icons/io";
 import { GrFormNextLink } from "react-icons/gr";
@@ -9,7 +9,7 @@ import { LuListMusic } from "react-icons/lu";
 import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 
 
-const MusicItem = ()=>{
+const MusicItem = React.memo(()=>{
 const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
 	const {id} = useParams()
 	const [playingIndex, setPlayingIndex] = useState(null);
@@ -147,6 +147,6 @@ setPlayingIndex((prevPlayingIndex)=>index)
 			</div>
 		</div>
 		)
-}
+})
 
 export default MusicItem

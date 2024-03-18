@@ -1,5 +1,5 @@
 import s from './MusicHome.module.css'
-import {useState,useEffect,useRef,useMemo,useContext} from 'react'
+import React,{useState,useEffect,useRef,useMemo,useContext} from 'react'
 import { MyContext } from './../../Context/TrackContext';
 import { FaPlay,FaPause  } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
@@ -8,7 +8,7 @@ import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 
 
 
-const MusicHome = ()=>{
+const MusicHome = React.memo(()=>{
 
 	const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
 const [playingIndex, setPlayingIndex] = useState(null);
@@ -143,6 +143,6 @@ setPlayingIndex((prevPlayingIndex)=>index)
 		
       
 		)
-}
+})
 
 export default MusicHome

@@ -1,5 +1,5 @@
 import s from './MusicPage.module.css'
-import {useState,useEffect,useRef,useMemo,useContext} from 'react'
+import React,{useState,useEffect,useRef,useMemo,useContext} from 'react'
 import { MyContext } from './../../Context/TrackContext';
 import { FaPlay,FaPause  } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 
 
-const MusicPage = ()=>{
+const MusicPage = React.memo(()=>{
 
 	const { activeLink,playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
 		const [playingIndex, setPlayingIndex] = useState(null);
@@ -254,6 +254,6 @@ const MusicPage = ()=>{
 		)
 
 
-}
+})
 
 export default MusicPage

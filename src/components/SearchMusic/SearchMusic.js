@@ -1,11 +1,11 @@
 import s from './SearchMusic.module.css'
-import {useState,useEffect,useContext,useRef} from 'react'
+import React,{useState,useEffect,useContext,useRef} from 'react'
 import { MyContext } from './../../Context/TrackContext';
 import { FaPlay,FaPause  } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import { IoMdDownload } from "react-icons/io";
 
-const SearchMusic = ()=>{
+const SearchMusic = React.memo(()=>{
 	const { tracks, setTracks , song , playing , setPlaying ,playingSong,setPlayingSong, handlerPlaying,index,setIndex,handlerNextMusic,handlerPrevMusic,changedPath} = useContext(MyContext);
 	const [search,setSearch] = useState("")
 	const [open,setOpen] = useState(false)
@@ -112,6 +112,6 @@ let findMusic = tracks
 		</>
 		)
 
-}
+})
 
 export default SearchMusic

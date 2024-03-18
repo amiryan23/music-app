@@ -1,11 +1,11 @@
 import s from './MusicSlider.module.css'
 import { CgPlayTrackPrevR,CgPlayTrackNextR } from "react-icons/cg";
-import {useState,useEffect,useRef,useMemo,useContext} from 'react'
+import React,{useState,useEffect,useRef,useMemo,useContext} from 'react'
 import { MyContext } from './../../Context/TrackContext';
 import { GrFormNextLink } from "react-icons/gr";
 import {Link} from "react-router-dom"
 
-const MusicSlider = ()=>{
+const MusicSlider = React.memo(()=>{
 	const [indexImg,setIndexImg] = useState(0)
  const {song, index , setIndex , tracks, setTracks , playing , setPlaying,changedPath} = useContext(MyContext);
 	const animSlider = useRef()
@@ -27,25 +27,19 @@ const MusicSlider = ()=>{
   ));
 }, [tracks, indexImg]);
 
-	const handlerNextClick = ()=>{
+	const handlerNextClick = useMemo(() => ()=>{
 		if(indexImg < 2){
 			setIndexImg((prevIndexImg)=>prevIndexImg + 1)
 		}
-	}
+	}, [indexImg])
 
-	const handlerPrevClick = ()=>{
+	const handlerPrevClick = useMemo(() => ()=>{
 		if(indexImg > 0){
 			setIndexImg((prevIndexImg)=>prevIndexImg - 1)
 		}
-	}
+	} , [indexImg])
 
-	{/* useEffect(()=>{ */}
-	{/* 	setInterval(()=>{ */}
-	{/* 		if(index < newTracks.length - 1){ */}
-	{/* 		setIndex((prevIndex)=>prevIndex + 1) */}
-	{/* 	}  */}
-	{/* 	},3000) */}
-	{/* },[index]) */}
+
 
 useEffect(() => {
   const intervalId = setInterval(() => {
@@ -56,7 +50,7 @@ useEffect(() => {
     }
   }, 5000);
 
-  // Очистка интервала при размонтировании компонента
+  
   return () => clearInterval(intervalId);
 }, [indexImg, newTracks]);
 
@@ -81,6 +75,6 @@ useEffect(() => {
     </main>
   ), [indexImg, newTracks, tracks.backG]);
 
-}
+})
 
 export default MusicSlider

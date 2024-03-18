@@ -1,4 +1,4 @@
-import React, { createContext, useState ,useCallback ,useRef,useEffect } from 'react';
+import React, { createContext, useState ,useCallback ,useRef,useEffect , useMemo } from 'react';
 import { useCookies} from 'react-cookie';
 import TS_Fien from './../Songs/TSFien.mp3'
 import AllofMe from './../Songs/AllofMe.mp3'
@@ -96,116 +96,93 @@ const [loaderImage,setLoaderImage] = useState(false)
 const song = useRef()
 
   
+const saveMusicToFavorite = useMemo(() => (id) => {
+    const updatedSavedTracks = [...savedTracks];
+    const isNewTrack = updatedSavedTracks.every(track => track.id !== tracks[id].id);
+    if (isNewTrack) {
+      updatedSavedTracks.push(tracks[id]);
+      setSavedTracks(updatedSavedTracks);
+      localStorage.setItem('savedMusics', JSON.stringify(updatedSavedTracks));
+    }
+    setAddedFavorite(true);
+    setTimeout(() => { setAddedFavorite(false) }, 350);
+  }, [tracks, savedTracks, setSavedTracks, setAddedFavorite]);
 
-  const saveMusicToFavorite = (id) =>{
-     const updatedSavedTracks = [...savedTracks];
-     const isNewTrack = updatedSavedTracks.every(track => track.id !== tracks[id].id);
-     
-      if (isNewTrack) {
-    updatedSavedTracks.push(tracks[id]);
+  const removeMusicToFavorite = useMemo(() => (id) => {
+    const updatedSavedTracks = savedTracks.filter(track => track.id !== id);
     setSavedTracks(updatedSavedTracks);
     localStorage.setItem('savedMusics', JSON.stringify(updatedSavedTracks));
-  }
-
-    setAddedFavorite((prevAddedFavorite)=>true)
-    setTimeout(()=>{setAddedFavorite((prevAddedFavorite)=>false)},350)
-  }
-
-  const removeMusicToFavorite = (id) =>{
-    const updatedSavedTracks = [...savedTracks];
-    const removeItem = updatedSavedTracks.filter(track => track.id !== id)
-    setSavedTracks(removeItem)
-    localStorage.setItem('savedMusics', JSON.stringify(removeItem));
-  }
-
-  const changedPath = (path) =>{
-      setActiveLink(path)
-       setCookie('activeLink', path ,{ path: '/' })
-  }
-
- const handlerPlaying = ()=>{
-  
-  
-  song.current.pause()
-  if(!playing ){
-    song.current.play()
-
-    } else (song.current.pause())
-
- }
-
- const handlerNextMusic = ()=>{
-  let randomMusicIndex = Math.floor(Math.random() * tracks.length);
-  if(index < tracks.length - 1){
-    if(randomMusic){
-      setIndex((prevIndex)=>randomMusicIndex)
-      
-    } else {
-    setIndex((prevIndex)=>index + 1)
-  }
-    if(playing){
-      setTimeout(()=>{song.current.play()},10)
-    } else {
-      setPlaying((prevPlaying)=>false)
-    }
-  }
-
-  if(index === tracks.length - 1){
-    setIndex((prevIndex)=>0)
-     if(randomMusic){
-      setIndex((prevIndex)=>randomMusicIndex)
-    }
-     if(playing){
-      setTimeout(()=>{song.current.play()},10)
-    } else {
-      setPlaying((prevPlaying)=>false)
-    }
-  }
- 
-    song.current.pause()
-    song.current.currentTime = 0
-
+  }, [savedTracks, setSavedTracks]);
 
   
- }
+ const changedPath = useMemo(() => (path) => {
+    setActiveLink(path);
+    setCookie('activeLink', path, { path: '/' });
+  }, [setActiveLink, setCookie]);
 
-  const handlerPrevMusic = ()=>{
-  if(index > 0){
-    setIndex((prevIndex)=>index - 1)
-     if(playing){
-      setTimeout(()=>{song.current.play()},10)
+ const handlerPlaying = useMemo(() => () => {
+    song.current.pause();
+    if (!playing) {
+      song.current.play();
     } else {
-      setPlaying((prevPlaying)=>false)
+      song.current.pause();
     }
-  }
+  }, [playing, song]);
 
-    if(index === 0){
-    setIndex((prevIndex)=>tracks.length - 1)
-    if(playing){
-      setTimeout(()=>{song.current.play()},10)
-    } else {
-      setPlaying((prevPlaying)=>false)
+
+  const handlerNextMusic = useMemo(() => () => {
+    let randomMusicIndex = Math.floor(Math.random() * tracks.length);
+    if (index < tracks.length - 1) {
+      if (randomMusic) {
+        setIndex(randomMusicIndex);
+      } else {
+        setIndex((prevIndex) => prevIndex + 1);
+      }
+      if (playing) {
+        setTimeout(() => { song.current.play() }, 10);
+      } else {
+        setPlaying(false);
+      }
     }
-  }
-  song.current.pause()
-  song.current.currentTime = 0
- }
+    if (index === tracks.length - 1) {
+      setIndex(0);
+      if (randomMusic) {
+        setIndex(randomMusicIndex);
+      }
+      if (playing) {
+        setTimeout(() => { song.current.play() }, 10);
+      } else {
+        setPlaying(false);
+      }
+    }
+    song.current.pause();
+    song.current.currentTime = 0;
+  }, [index, tracks, playing, randomMusic, setIndex, song]);
 
- const playThisSong = (thisIndex)=>{
-    setIndex(thisIndex)
-      setPlaying((prevPlaying)=>!prevPlaying)
-  song.current.pause()
-  if(!playing){
-    song.current.play()
+  const handlerPrevMusic = useMemo(() => () => {
+    if (index > 0) {
+      setIndex((prevIndex) => prevIndex - 1);
+      if (playing) {
+        setTimeout(() => { song.current.play() }, 10);
+      } else {
+        setPlaying(false);
+      }
+    }
+    if (index === 0) {
+      setIndex(tracks.length - 1);
+      if (playing) {
+        setTimeout(() => { song.current.play() }, 10);
+      } else {
+        setPlaying(false);
+      }
+    }
+    song.current.pause();
+    song.current.currentTime = 0;
+  }, [index, tracks, playing, setIndex, song]);
 
-    } else (song.current.pause())
-
- }
-
- const changeRandom = ()=>{
-  setRandomMusic((prevRandomMusic)=>!prevRandomMusic)
- }
-
+  const changeRandom = useMemo(() => () => {
+    setRandomMusic((prevRandomMusic) => !prevRandomMusic);
+  }, [setRandomMusic]);
  
 
   return (
