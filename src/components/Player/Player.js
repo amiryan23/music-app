@@ -21,7 +21,13 @@ const [playListIndex,setPlayListIndex] = useState(savedTracks.length - 1)
 const [loading,setLoading] = useState(true)
 
 
-
+     const handleClickOnMiniContent = (event) => {
+    const progressBar = event.currentTarget;
+    const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
+    const percentage = clickPosition / progressBar.clientWidth;
+    const newTime = percentage * song.current?.duration;
+    song.current.currentTime = newTime;
+  };
 
 useEffect(() => {
 	song.current = null;
@@ -38,6 +44,8 @@ song.current = new Audio(tracks[index].song)
     };
 
  	
+
+ 	
   const handleunLoadedData = () => {
     setLoading(false)
     
@@ -52,7 +60,8 @@ song.current = new Audio(tracks[index].song)
     if (song.current) {
       song.current.addEventListener('timeupdate', updateFormattedTime);
       song.current.addEventListener('loadstart', handleunLoadedData);
-     song.current.addEventListener('canplaythrough', handleLoadedData);
+     song.current.addEventListener('canplay', handleLoadedData);
+     // song.current.addEventListener('durationchange', handleClickOnMiniContent);
   
 }
       return () => {
@@ -60,7 +69,8 @@ song.current = new Audio(tracks[index].song)
       	if(song.current){
         song.current.removeEventListener('timeupdate', updateFormattedTime);
         song.current.removeEventListener('loadstart', handleLoadedData);
-      song.current.removeEventListener('canplaythrough', handleLoadedData);
+      song.current.removeEventListener('canplay', handleLoadedData);
+      // song.current.removeEventListener('durationchange', handleClickOnMiniContent);
     
       
       }};
@@ -101,44 +111,9 @@ song.current = new Audio(tracks[index].song)
       		</> )
 	},[tracks,setTracks,playing,index,loading])
 
-// 	const playListTracks = useMemo(()=>{
-// 		return savedTracks.map(m=> <>
-// 			<div key={m.id} className={s.content1}>
-// 			<span className={s.miniItem1}></span>
-// 			<span className={s.miniItem2}>{m.songName}</span>
-// 			{playing ? <span className={s.miniItem1}> <Bars
-//   height="20"
-//   width="80"
-//   color="floralwhite"
-//   ariaLabel="bars-loading"
-//   wrapperStyle={{}}
-//   wrapperClass=""
-//   visible={true}
-//   /> </span> : <span className={s.miniItem1}></span>}</div>
-// 			<audio id={m.id} className={s.track} ref={song} 
-// 			 	preload="auto"
-//    onLoadedData={() => {
-//     setLoading(false);
-//     console.log("loaded");
-//   }}
-//   onCanPlayThrough={() => {
-//     setLoading(true);
-//     console.log("can play through");
-//   }}
-// 
-// 			 controls>
-//        <source  src={m.song} type="audio/mpeg" />
-//       		</audio>
-//       		</> )
-// 	},[savedTracks,playing,index,loading])
 
-  const handleClickOnMiniContent = (event) => {
-    const progressBar = event.currentTarget;
-    const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
-    const percentage = clickPosition / progressBar.clientWidth;
-    const newTime = percentage * song.current?.duration;
-    song.current.currentTime = newTime;
-  };
+
+
 
   useEffect(()=>{
   
