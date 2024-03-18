@@ -26,12 +26,15 @@ const [loading,setLoading] = useState(true)
     const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
     const percentage = clickPosition / progressBar.clientWidth;
     const newTime = percentage * song.current?.duration;
-    song.current.currentTime = newTime;
+      if (song.current.readyState >= 4){
+          song.current.currentTime = newTime;
+        }
   };
 
 useEffect(() => {
 	song.current = null;
 song.current = new Audio(tracks[index].song)
+// song.current.load()
 
    	 const updateFormattedTime = () => {
       const currentMinutes = Math.floor(song.current.currentTime / 60);
