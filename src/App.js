@@ -48,7 +48,7 @@ function App() {
           ariaLabel="color-ring-loading"
           wrapperStyle={{}}
           wrapperClass="color-ring-wrapper"
-          colors={['#999', '#222']}
+          colors={['#222', '#222' , '#222']}
           />
      </div>}>
       <Routes >

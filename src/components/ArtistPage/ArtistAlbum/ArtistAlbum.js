@@ -8,7 +8,7 @@ import { IoMdDownload } from "react-icons/io";
 import { MdFavoriteBorder,MdOutlineFavorite } from "react-icons/md";
 
 const ArtistAlbum = React.memo(()=>{
-const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
+const { playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,handlerPlaying,song,changedPath,savedTracks,saveMusicToFavorite,removeMusicToFavorite} = useContext(MyContext);
 const [playingIndex, setPlayingIndex] = useState(null);
 	const {id} = useParams()
 	const {name} = useParams()

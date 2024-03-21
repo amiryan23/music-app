@@ -38,6 +38,10 @@ gap:5px;
 	align-self: flex-start;
 }
 
+.miniBlock1,.miniBlock3{
+	width:30px;
+}
+
 .miniBlock2{
 	width: 100%;
 	height: 5px;

@@ -21,10 +21,10 @@ const MusicPage = React.memo(()=>{
 		const animBlock1 = useRef()
 		const animBlock2 = useRef()
 		const animBlock3 = useRef()
-
 		const newRef = useRef()
 		const oldRef = useRef()
 		const topRef = useRef()
+
 
 		useEffect(()=>{
 			window.scrollTo(0,0)
@@ -47,17 +47,6 @@ const MusicPage = React.memo(()=>{
 		
 		},[activeLink,newSchool])
 
-// 		
-
-// 		useEffect(()=>{
-// 
-//   	if(playingSong && playing){
-//   		song.current.pause()
-//       setTimeout(()=>{song.current.play()},0)		
-//   	} 
-// 
-// 
-//   },[playing,playingSong,index])
 
 		useEffect(()=>{
 			if(open ){

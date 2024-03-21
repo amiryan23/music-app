@@ -6,7 +6,7 @@ import { ColorRing } from 'react-loader-spinner'
 
 
 const ArtistPage = React.memo(()=>{
-	const { activeLink,playing,setPlaying,tracks, playingSong,setPlayingSong,setTracks ,index,setIndex,playThisSong,handlerPlaying,song,loaderImage,setLoaderImage} = useContext(MyContext);
+	const { activeLink,tracks,loaderImage,setLoaderImage} = useContext(MyContext);
 	
 	const animBlock1 = useRef()
 
