@@ -57,12 +57,17 @@ song.current = new Audio(tracks[index].song)
    
   };
 
+  const handleAudioEnded = () => {
+    setTimeout(()=>{handlerNextMusic()},100) 
+  };
+
  
     if (song.current) {
       song.current.addEventListener('timeupdate', updateFormattedTime);
       song.current.addEventListener('loadstart', handleunLoadedData);
      song.current.addEventListener('canplay', handleLoadedData);
      song.current.addEventListener('loadedmetadata', handleLoadedData);
+     song.current.addEventListener('ended', handleAudioEnded);
   
   
 }
@@ -73,6 +78,7 @@ song.current = new Audio(tracks[index].song)
         song.current.removeEventListener('loadstart', handleLoadedData);
       song.current.removeEventListener('canplay', handleLoadedData);
       song.current.removeEventListener('loadedmetadata', handleLoadedData);
+      song.current.removeEventListener('ended', handleAudioEnded);
       
     
       
@@ -118,21 +124,21 @@ song.current = new Audio(tracks[index].song)
 
 
 
-  useEffect(()=>{
-  
-  	if(playingSong){
-  		setTimeout(()=>{song.current.play()},10)
-  	}
-  },[playingSong])
-
-  useEffect(()=>{
-  	if(formattedTime === totalTime){
-  		handlerNextMusic()
-  		
-  		
-
-  	}
-  },[formattedTime])
+  // useEffect(()=>{
+  // 
+  // 	if(playingSong){
+  // 		setTimeout(()=>{song.current.play()},10)
+  // 	}
+  // },[playingSong])
+// 
+//   useEffect(()=>{
+//   	if(formattedTime === totalTime){
+//   		handlerNextMusic()
+//   		
+//   		
+// 
+//   	}
+//   },[formattedTime])
 
 
 

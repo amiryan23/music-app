@@ -31,7 +31,7 @@ const Header = React.memo(({open,setOpen})=>{
 				<div className={s.content1}>
 				<button onClick={handlerPortalOpen}><TiThMenuOutline size="50" color="#999" /></button>
 				<span onClick={()=>{changedPath("/")}}>
-				<Link to="/"><img src={logoMusic3} width="200px"/></Link>
+				<Link to="/"><img src={logoMusic3} width="300px"/></Link>
 				</span>
 				</div>
 				<div className={s.content2}>

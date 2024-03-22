@@ -64,7 +64,7 @@ let findMusic = tracks
        <span className={s.item3}>
        {/* <a href={m.song} download={`${m.songName}.mp3`} ><IoMdDownload /></a> */}
        <a onClick={()=>{changedPath("/music/")}} href={`/music/${m.id}`}><IoMdDownload /></a>
-       save
+       
        </span>
     </span> )
 

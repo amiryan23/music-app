@@ -24,28 +24,23 @@ const MusicPage = React.memo(()=>{
 		const newRef = useRef()
 		const oldRef = useRef()
 		const topRef = useRef()
+		const containRef = useRef()
 
 
 		useEffect(()=>{
 			window.scrollTo(0,0)
-		},[])
+		let timer = setTimeout(()=>{containRef.current.classList.add(s.containAnim)},0)
+
+		return ()=>{
+			if(containRef.current){
+				clearTimeout(timer)
+				containRef.current.classList.remove(s.containAnim)
+			}
+		}
+	},[])
 
 
-		useEffect(()=>{
-			if(activeLink === "/music/"){
-			setTimeout(()=>{animBlock1.current.classList.add(s.animBlock1)
-			animBlock2.current.classList.add(s.animBlock2)
-			animBlock3.current.classList.add(s.animBlock3)},50)
-		} 
-		 return ()=>{
-		 	if(activeLink !== "/music/" && animBlock1.current){
-		 		animBlock1.current.classList.remove(s.animBlock1)
-			animBlock2.current.classList.remove(s.animBlock2)
-			animBlock3.current.classList.remove(s.animBlock3)
-		 	}
-		 }
-		
-		},[activeLink,newSchool])
+
 
 
 		useEffect(()=>{
@@ -55,17 +50,18 @@ const MusicPage = React.memo(()=>{
 			animBlock2.current.classList.add(s.blockShadow)
 			animBlock3.current.classList.add(s.blockShadow)
 
-			setTimeout(()=>{
+			 setTimeout(()=>{
 			animBlock1.current.classList.remove(s.blockShadow)
 			animBlock2.current.classList.remove(s.blockShadow)
 			animBlock3.current.classList.remove(s.blockShadow)
-			},250)
+			},350)
 		}
 
 
 		},[open])
 
-	const AllTracks = tracks
+	const AllTracks = useMemo(() => {
+	return tracks
   	.map(m => 
     <span key={m.id}  className={s.miniBlock2}>
       <span className={s.item1} style={{backgroundImage:`url(${m.backG})`}}>
@@ -105,10 +101,11 @@ const MusicPage = React.memo(()=>{
       
       </span>
       </span>
-    </span> )
+    </span> ) },[tracks,playing,index,savedTracks])
 
 
-    const newSchoolTracks = tracks
+    const newSchoolTracks = useMemo(()=> {
+		return tracks
     .filter(track => track.mode === "newschool")
     .map(m => 
     	<span key={m.id} className={s.miniTrack}>
@@ -141,9 +138,10 @@ const MusicPage = React.memo(()=>{
     		<span className={s.trackItem3}></span>
     		
     	</span>
-    	)
+    	) },[tracks,playing,index,savedTracks])
 
-    const oldSchoolTracks = tracks
+    const oldSchoolTracks = useMemo(() => {
+    return tracks
     .filter(track => track.mode === "oldschool")
     .map(m => 
     	<span key={m.id} className={s.miniTrack}>
@@ -176,10 +174,11 @@ const MusicPage = React.memo(()=>{
     		<span className={s.trackItem3}></span>
     		
     	</span>
-    	)
+    	) },[tracks,playing,index,savedTracks])
 
 	return(
-		<main className={s.megaContainer}>
+		<main className={s.megaContainer} >
+			<div className={s.megaContentContainer} ref={containRef}>
 			<div className={s.megaContent1}>
 				<div className={s.Block1} ref={animBlock1}>
 					<div className={s.content1}><h1 ref={newRef}>New School</h1></div>
@@ -195,7 +194,7 @@ const MusicPage = React.memo(()=>{
 					}><IoIosArrowDropdownCircle size="45" /></button>
 					: <button onClick={()=>{
 						setNewSchool((prevNewSchool)=> 3)
-						newRef.current.scrollIntoView()
+						newRef.current.scrollIntoView({ behavior: "smooth",block: "start",inline: "start"})
 						setOpen((prevOpen)=>!open)
 					}}><IoIosArrowDropupCircle size="45"/></button> }
 					</div>
@@ -214,14 +213,14 @@ const MusicPage = React.memo(()=>{
 					}><IoIosArrowDropdownCircle size="45"/></button>
 					: <button onClick={()=>{
 						setOldSchool((prevOldSchool)=> 3)
-						oldRef.current.scrollIntoView()
+						oldRef.current.scrollIntoView({ behavior: "smooth",block: "start",inline: "start"})
 						setOpen((prevOpen)=>!open)
 					}}><IoIosArrowDropupCircle size="45"/></button> }
 					</div>
 				</div>
 			</div>
 			<div className={s.megaContent2} ref={animBlock3}>
-				<h5 ref={topRef}>Top 15 music in week<IoMusicalNotesSharp/></h5>
+				<h5 ref={topRef}>Top  musics<IoMusicalNotesSharp/></h5>
 				{AllTracks.slice(0,topMusicWeek)}
 				<div className={s.content3}>
 					{topMusicWeek <= 9 
@@ -238,6 +237,7 @@ const MusicPage = React.memo(()=>{
 						setOpen((prevOpen)=>!open)
 					}}><IoIosArrowDropupCircle size="45"/></button> }
 					</div>
+			</div>
 			</div>
 		</main>
 		)

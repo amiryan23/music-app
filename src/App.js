@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 // import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
+import Modal from './components/Modal/Modal'
 // import Footer from './components/Footer/Footer'
 // import Home from './components/Home/Home'
 // import MusicPage from './components/MusicPage/MusicPage'
@@ -27,6 +28,7 @@ const SavedMusic = React.lazy(() => import('./components/SavedMusic/SavedMusic')
 
 function App() {
   const [open,setOpen] = useState(false)
+  const [openModal,setOpenModal] = useState(false)
 
 
 
@@ -40,6 +42,7 @@ function App() {
     <div className="App">
       <Header open={open} setOpen={setOpen}/>
      {open ? <SideBar open={open} setOpen={setOpen} /> : ""}
+     {openModal ? <Modal openModal={openModal} setOpenModal={setOpenModal} /> : ""}
      <Suspense fallback={<div className="loading">
        <ColorRing
           visible={true}
@@ -62,7 +65,7 @@ function App() {
       
       </Routes>
       </Suspense>
-      <Footer />
+      <Footer setOpenModal={setOpenModal}/>
       
     </div>
 </MyContextProvider>

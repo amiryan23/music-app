@@ -107,7 +107,27 @@ setPlayingIndex((prevPlayingIndex)=>index)
 		<div className={s.megaContainer} >
 			<div className={s.content1} ref={animBlock1}>
 				<div className={s.miniContent1} style={{backgroundImage:`url(${selectedMusic.backG})`}}>
+					{index === selectedMusic.id && playing 
+      	? <FaPause onClick={()=>{
+      		setPlayingSong(false)
+      		setPlaying((prevPlaying)=>false)
+      		if(playing){
+      		song.current.pause()
+      	}
+      
 					
+      	}}/> : <FaPlay onClick={()=>{
+      		setPlayingSong(true)
+      		setIndex(selectedMusic.id)
+      		// setPlayingIndex(index)
+      		
+      		if(playing){
+      			song.current.pause()
+      		} else{
+      			setPlaying((prevPlaying)=>true)
+      		}
+
+      	}}/>  }
 				</div>
 				<div className={s.miniContent2}>
 					<div className={s.miniBlock1} ref={scrollToText}>{selectedMusic.songName}</div>

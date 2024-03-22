@@ -1,0 +1,124 @@
+.Container{
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top:0;
+	background-color: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(2px);
+	transition: 350ms;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+}
+
+
+.megaContainer{
+
+	width:50%;
+	min-height:60%;
+	height: auto;
+	position:fixed;
+	
+	
+	background-color:rgba(60, 60, 60, 0.9);
+	animation:animSideBar 300ms linear forwards;
+	backdrop-filter: blur(5px);
+	border-radius:20px;
+	z-index:99;
+	opacity: 0;
+	animation:animSideBar 300ms linear forwards;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 15px;
+	overflow-y: scroll;
+}
+
+@keyframes animSideBar {
+	100%{
+		opacity: 1;
+	
+	}
+}
+
+.content1{
+	width:100%;
+	display:flex;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: none;
+	
+}
+
+.content1 span{
+	color: whitesmoke;
+	font-family: monospace;
+	font-size: 25px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content1 span button{
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	
+}
+
+.content2{
+
+	color: antiquewhite;
+
+/*	font-weight: bolder;*/
+	word-break: break-word;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+}
+
+
+.content3{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+}
+
+.content3 .block1,.content2 .block1{
+	color: lightblue;
+}
+
+.content3 .block2{
+	font-size: 17px;
+	color: palevioletred;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+@media screen and (max-width:430px){
+	.megaContainer{
+		width: 95%;
+		height: auto;
+		top: 15px;
+	}
+
+	.content1 span{
+		font-size: 17px;
+	}
+
+	.content2{
+		gap:2px;
+	}
+	.content3{
+		gap:2px;
+	}
+
+	.content3 .block2 {
+		gap:3px;
+	}
+}

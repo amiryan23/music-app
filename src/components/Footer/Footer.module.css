@@ -67,8 +67,41 @@
 	font-size: 18px;
 }
 
-.miniBlock2 svg {
-	color: #999;
+.miniBlock2 span {
+	width: 40px;
+	height: 40px;
+	
+	background: linear-gradient(90deg, rgba(146,74,172,0.7651435574229692) 23%, rgba(30,108,195,0.7287289915966386) 67%, rgba(17,71,120,0.6727065826330532) 100%);
+border-radius:50%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.miniBlock2 a svg {
+	width: 40px;
+	height: 40px;
+
+
+}
+
+.miniBlock2 button {
+	width:50%;
+	padding:10px;
+	border-radius:9px;
+	cursor:pointer;
+	color:whitesmoke;
+	font-weight:bold;
+	letter-spacing:1px;
+	background: rgb(146,74,172);
+background: linear-gradient(90deg, rgba(146,74,172,0.7651435574229692) 23%, rgba(30,108,195,0.7287289915966386) 67%, rgba(17,71,120,0.6727065826330532) 100%);
+border:1px solid rgb(87,61,205);
+transition:250ms linear;
+
+}
+
+.miniBlock2 button:hover {
+	transform:scale(1.05);
 }
 
 .container2{

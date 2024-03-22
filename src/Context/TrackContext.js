@@ -31,16 +31,16 @@ const MyContextProvider = ({ children }) => {
 
   const [tracks, setTracks] = useState(
     [
-    {id:0,songName:"21 Savage - All of me",song:AllofMe,backG:"https://wallpapers.com/images/hd/21-savage-streetzfest-2k18-o70nt8nefuuq9rpv.jpg",mode: "newschool",artist:"21 Savage",artistPhoto:"https://assets-global.website-files.com/65b300512ced7cf5a4ad20ab/65d7c107f2d38ce9d8e883db_21%20Savage.jpg",albumBackG:"https://wallpapers.com/images/hd/21-savage-background-qg5awte81mi00i8u.jpg"},
+    {id:0,songName:"21 Savage - All of me",song:AllofMe,backG:"https://wallpapers.com/images/hd/21-savage-streetzfest-2k18-o70nt8nefuuq9rpv.jpg",mode: "newschool",artist:"21 Savage",artistPhoto:"https://assets-global.website-files.com/65b300512ced7cf5a4ad20ab/65d7c107f2d38ce9d8e883db_21%20Savage.jpg",albumBackG:"https://lh3.googleusercontent.com/proxy/6o2u1ysdqipJQTsYB3enE7aFG1UAlZIQ26hYlVj61R2IuVSRwKpSFAAqp1-2OIj3ihaJIDs7oXW2PAc9eh18gcIPnXNT3lywRG3iGg5aNuPHptEC28X8OrDABDwTTC2VsEgYKwfMrxq7rQ"},
     {id:1,songName:"Travis Scott - Fe!n",song:TS_Fien,backG:"https://i.pinimg.com/originals/a9/a7/29/a9a729f26baddd99af9d2cdb9da36961.jpg",mode: "newschool",artist:"Travis Scott",artistPhoto:"https://media.npr.org/assets/img/2021/11/16/gettyimages-1235223332_sq-018166785ff8ed3e47c6e014e0f58618be107ddf.jpg",albumBackG:"https://i.pinimg.com/originals/a9/a7/29/a9a729f26baddd99af9d2cdb9da36961.jpg"},
-    {id:2,songName:"2Pac - All Eyez On Me",song:tuPacAll,backG:"https://e0.pxfuel.com/wallpapers/1001/383/desktop-wallpaper-2pac-background-tupac.jpg",mode: "oldschool",artist:"2Pac",artistPhoto:"https://cdn.prod.www.spiegel.de/images/6dbf3ec7-0001-0004-0000-000000682110_w1200_r1_fpx42.63_fpy50.jpg"},
-    {id: 3, songName: "Eminem - Lose Yourself", song:Еlose, backG: "https://upload.wikimedia.org/wikipedia/en/d/d6/Lose_Yourself.jpg", mode: "oldschool",artist:"Eminem",artistPhoto:"https://pbs.twimg.com/profile_images/1571096890938212352/Pud9XpLp_400x400.jpg"},
-    {id: 4, songName: "Drake - God's Plan", song:DEGodP, backG: "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5", mode: "newschool",artist:"Drake",artistPhoto:"https://pyxis.nymag.com/v1/imgs/be9/a0a/13c5454a5667c3964f6d39e1e4f1a3eec1-31-drake.rsquare.w400.jpg"},
+    {id:2,songName:"2Pac - All Eyez On Me",song:tuPacAll,backG:"https://e0.pxfuel.com/wallpapers/1001/383/desktop-wallpaper-2pac-background-tupac.jpg",mode: "oldschool",artist:"2Pac",artistPhoto:"https://cdn.prod.www.spiegel.de/images/6dbf3ec7-0001-0004-0000-000000682110_w1200_r1_fpx42.63_fpy50.jpg",albumBackG:"https://images.paramount.tech/uri/mgid:arc:imageassetref:bet.com:f20010c2-f3f0-11eb-84ca-0e0dce71f2a5?quality=0.7&gen=ntrn"},
+    {id: 3, songName: "Eminem - Lose Yourself", song:Еlose, backG: "https://upload.wikimedia.org/wikipedia/en/d/d6/Lose_Yourself.jpg", mode: "oldschool",artist:"Eminem",artistPhoto:"https://pbs.twimg.com/profile_images/1571096890938212352/Pud9XpLp_400x400.jpg",albumBackG:"https://www.usatoday.com/gcdn/presto/2022/02/14/USAT/d69e5fe1-9a94-4c1b-a71c-493806d95194-USP_NFL__Super_Bowl_LVI-Los_Angeles_Rams_at_Cincin_9.jpg?crop=4733,2663,x0,y174&width=1600&height=800&format=pjpg&auto=webp"},
+    {id: 4, songName: "Drake - God's Plan", song:DEGodP, backG: "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5", mode: "newschool",artist:"Drake",artistPhoto:"https://pyxis.nymag.com/v1/imgs/be9/a0a/13c5454a5667c3964f6d39e1e4f1a3eec1-31-drake.rsquare.w400.jpg",albumBackG:"https://www.usatoday.com/gcdn/authoring/authoring-images/2023/07/28/USAT/70488405007-ap-22344233420296.jpg?crop=6047,3416,x0,y0&width=1600&height=800&format=pjpg&auto=webp"},
     {id: 5, songName: "Cardi B - Bodak Yellow", song:CBbodakYellow, backG: "https://upload.wikimedia.org/wikipedia/en/4/48/Cardi_B_-_Bodak_Yellow.png", mode: "newschool",artist:"21 Savage"},
     {id: 6, songName: "Post Malone - Rockstar", song:PMrockstar, backG: "https://i1.sndcdn.com/artworks-000278300330-cmnuzz-t500x500.jpg", mode: "newschool",artist:"21 Savage"},
     {id: 7, songName: "Jay-Z - 99 Problems", song:JayZp, backG: "https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg/220px-Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg", mode: "oldschool",artist:"21 Savage"},
     {id: 8, songName: "N.W.A - Straight Outta Compton", song:Nwa, backG: "https://upload.wikimedia.org/wikipedia/en/8/84/StraightOuttaComptonN.W.A..jpg", mode: "oldschool",artist:"21 Savage"},
-    {id: 9, songName: "Biggie Smalls - Juicy", song:BIGjuicy, backG: "https://www.thisisdig.com/wp-content/uploads/2021/08/Juicy.jpg", mode: "oldschool",artist:"Biggie Smalls",artistPhoto:"https://pbs.twimg.com/profile_images/1003375115390849030/9ZXXfw31_400x400.jpg"},
+    {id: 9, songName: "Biggie Smalls - Juicy", song:BIGjuicy, backG: "https://www.thisisdig.com/wp-content/uploads/2021/08/Juicy.jpg", mode: "oldschool",artist:"Biggie Smalls",artistPhoto:"https://pbs.twimg.com/profile_images/1003375115390849030/9ZXXfw31_400x400.jpg",albumBackG:"https://uploads.dailydot.com/bd4/d4/6f25e1e0bcf7ea06bbf2312b96eb70f8.jpg?q=65&auto=format&w=1600&ar=2:1&fit=crop"},
     {id: 10, songName: "Travis Scott - SICKO MODE", song:TSsickM, backG: "https://i1.sndcdn.com/artworks-fHz0TehPvqo9-0-t500x500.jpg", mode: "newschool",artist:"Travis Scott"},
     {id: 11, songName: "Kanye West - Stronger", song:KWstronger, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2f/db/2c/2fdb2c9d-171c-c6dc-57ee-4bae2b4bb11a/07UMGIM12671.rgb.jpg/400x400cc.jpg", mode: "newschool",artist:"21 Savage"},
     {id: 12, songName: "Lil Wayne - A Milli", song:LWamilli, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7d/63/39/7d6339c5-6ce7-7cf6-5f5b-6f3f3f478817/08UMGIM10308.rgb.jpg/400x400cc.jpg", mode: "oldschool",artist:"21 Savage"},
@@ -53,31 +53,7 @@ const MyContextProvider = ({ children }) => {
 
  
 
-//   useEffect(()=>{
-//     if(!loaderMusic){
-//      localStorage.setItem('allTracks', JSON.stringify(
-//       [
-//     {id:0,songName:"21 Savage - All of me",song:AllofMe,backG:"https://wallpapers.com/images/hd/21-savage-streetzfest-2k18-o70nt8nefuuq9rpv.jpg",mode: "newschool",artist:"21 Savage",artistPhoto:"https://assets-global.website-files.com/65b300512ced7cf5a4ad20ab/65d7c107f2d38ce9d8e883db_21%20Savage.jpg",albumBackG:"https://wallpapers.com/images/hd/21-savage-background-qg5awte81mi00i8u.jpg"},
-//     {id:1,songName:"Travis Scott - Fe!n",song:TS_Fien,backG:"https://i.pinimg.com/originals/a9/a7/29/a9a729f26baddd99af9d2cdb9da36961.jpg",mode: "newschool",artist:"Travis Scott",artistPhoto:"https://media.npr.org/assets/img/2021/11/16/gettyimages-1235223332_sq-018166785ff8ed3e47c6e014e0f58618be107ddf.jpg",albumBackG:"https://i.pinimg.com/originals/a9/a7/29/a9a729f26baddd99af9d2cdb9da36961.jpg"},
-//     {id:2,songName:"2Pac - All Eyez On Me",song:tuPacAll,backG:"https://e0.pxfuel.com/wallpapers/1001/383/desktop-wallpaper-2pac-background-tupac.jpg",mode: "oldschool",artist:"2Pac",artistPhoto:"https://cdn.prod.www.spiegel.de/images/6dbf3ec7-0001-0004-0000-000000682110_w1200_r1_fpx42.63_fpy50.jpg"},
-//     {id: 3, songName: "Eminem - Lose Yourself", song:Еlose, backG: "https://upload.wikimedia.org/wikipedia/en/d/d6/Lose_Yourself.jpg", mode: "oldschool",artist:"Eminem",artistPhoto:"https://pbs.twimg.com/profile_images/1571096890938212352/Pud9XpLp_400x400.jpg"},
-//     {id: 4, songName: "Drake - God's Plan", song:DEGodP, backG: "https://i.scdn.co/image/ab67616d0000b273f907de96b9a4fbc04accc0d5", mode: "newschool",artist:"Drake",artistPhoto:"https://pyxis.nymag.com/v1/imgs/be9/a0a/13c5454a5667c3964f6d39e1e4f1a3eec1-31-drake.rsquare.w400.jpg"},
-//     {id: 5, songName: "Cardi B - Bodak Yellow", song:CBbodakYellow, backG: "https://upload.wikimedia.org/wikipedia/en/4/48/Cardi_B_-_Bodak_Yellow.png", mode: "newschool",artist:"21 Savage"},
-//     {id: 6, songName: "Post Malone - Rockstar", song:PMrockstar, backG: "https://i1.sndcdn.com/artworks-000278300330-cmnuzz-t500x500.jpg", mode: "newschool",artist:"21 Savage"},
-//     {id: 7, songName: "Jay-Z - 99 Problems", song:JayZp, backG: "https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg/220px-Jay-Z_-_99_Problems%2BDirt_Off_Your_Shoulder_%28CD2%29.jpg", mode: "oldschool",artist:"21 Savage"},
-//     {id: 8, songName: "N.W.A - Straight Outta Compton", song:Nwa, backG: "https://upload.wikimedia.org/wikipedia/en/8/84/StraightOuttaComptonN.W.A..jpg", mode: "oldschool",artist:"21 Savage"},
-//     {id: 9, songName: "Biggie Smalls - Juicy", song:BIGjuicy, backG: "https://www.thisisdig.com/wp-content/uploads/2021/08/Juicy.jpg", mode: "oldschool",artist:"Biggie Smalls",artistPhoto:"https://pbs.twimg.com/profile_images/1003375115390849030/9ZXXfw31_400x400.jpg"},
-//     {id: 10, songName: "Travis Scott - SICKO MODE", song:TSsickM, backG: "https://i1.sndcdn.com/artworks-fHz0TehPvqo9-0-t500x500.jpg", mode: "newschool",artist:"Travis Scott"},
-//     {id: 11, songName: "Kanye West - Stronger", song:KWstronger, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2f/db/2c/2fdb2c9d-171c-c6dc-57ee-4bae2b4bb11a/07UMGIM12671.rgb.jpg/400x400cc.jpg", mode: "newschool",artist:"21 Savage"},
-//     {id: 12, songName: "Lil Wayne - A Milli", song:LWamilli, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7d/63/39/7d6339c5-6ce7-7cf6-5f5b-6f3f3f478817/08UMGIM10308.rgb.jpg/400x400cc.jpg", mode: "oldschool",artist:"21 Savage"},
-//     {id: 13, songName: "Post Malone - Circles", song:PMcircles, backG: "https://i.ytimg.com/vi/x9ahMkugiEA/hqdefault.jpg", mode: "newschool",artist:"21 Savage"},
-//     {id: 14, songName: "Eminem - The Real Slim Shady", song:Etrss, backG: "https://i.ebayimg.com/images/g/6uQAAOSwaztiDoPR/s-l400.jpg", mode: "oldschool",artist:"Eminem"},
-//     {id: 15, songName: "Travis Scott - Goosebumps", song:TSgooseb, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/50/f7/a3/50f7a39d-3bd5-28e9-0264-532f08b5b810/886446074726.jpg/400x400cc.jpg", mode: "newschool",artist:"Travis Scott"},
-//     {id: 16, songName: "Travis Scott & Young Thug - Trance", song:MBandTStrance, backG: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/6e/fc/48/6efc48ad-d371-c4d6-62ff-1655c2be943d/22UM1IM40165.rgb.jpg/400x400cc.jpg", mode: "newschool",artist:"Travis Scott"}
-//     ]
-//       ));
-// }
-//   },[])
+
 
   const savedMusicStorage = JSON.parse(localStorage.getItem('savedMusics'))
 
@@ -138,7 +114,7 @@ const saveMusicToFavorite = useMemo(() => (id) => {
       } else {
         setIndex((prevIndex) => prevIndex + 1);
       }
-      if (playing) {
+      if (playing ) {
         setTimeout(() => { song.current.play() }, 10);
       } else {
         setPlaying(false);

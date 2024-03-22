@@ -14,7 +14,10 @@
 	padding: 5px;
 	color: floralwhite;
 	font-weight: bold;
-	border: 2px solid rgba(87,61,255, 0.8);
+	border: 3px solid rgba(87,61,255, 0.8);
+	border-image: linear-gradient(to left top,#999 10%,  transparent 30%, transparent 70%, #999 90%);
+    border-image-slice: 1;
+
 }
 
 .container{
@@ -47,7 +50,7 @@
 .item1{
 	width: 75px;
 	height: 75px;
-	border: 2px solid  #111;
+	border: 2px solid  #333;
 	border-radius: 7px;
 /*	flex: 1;*/
 	display: flex;
@@ -67,12 +70,12 @@
 .item2{
 	align-self: center;
 	flex: 1;
-	color: #111;
+	color: #333;
 }
 
 .item2 a {
 /*	text-decoration:none;*/
-	color:#111;
+	color: #333;
 	font-weight:bold;
 }
 
@@ -80,7 +83,7 @@
 	align-self: center;
 	display: flex;
 	flex-direction: column;
-	color:  #111;
+	color: #333;
 	justify-content: center;
 	font-family: monospace;
 	font-size: 13px;
@@ -88,7 +91,7 @@
 }
 
 .item3 a svg{
-	color: #111;
+	color: #333;
 	font-size: 25px;
 }
 

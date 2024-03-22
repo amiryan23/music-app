@@ -53,6 +53,8 @@ border-bottom:5px solid rgba(87,61,255, 0.1);
 
 .content1 span img {
 	filter:drop-shadow(1px 1px 1px rgba(256,256,256,0.5));
+	border:none;
+	outline:none;
 }
 
 .content2{
@@ -143,7 +145,8 @@ border-bottom:5px solid rgba(87,61,255, 0.1);
 
 .content3{
 	width: 100%;
-	height: auto;
+	height:auto;
+	min-height: 80px;
 /*	border-radius: 30px;*/
 /*	background-color:#000033;;*/
 background: rgb(87,61,205);

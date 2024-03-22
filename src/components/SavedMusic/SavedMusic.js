@@ -71,7 +71,7 @@ setPlayingIndex((prevPlayingIndex)=>index)
 	return(
 		<main className={s.megaContainer}>
 			<div className={s.container} ref={animBlock1}>
-			<div className={s.content1}>My favorite Songs</div>
+			<div className={s.content1}>My Favorite Songs</div>
 			<div className={s.content2}>
 			{savedTracks.length 
 			? favoriteSongs.reverse()

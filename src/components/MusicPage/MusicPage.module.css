@@ -1,13 +1,28 @@
 .megaContainer{
 	width:100%;
 	min-height:100vh;
+	overflow:hidden;
+
+
+}
+
+.megaContentContainer {
+		width:100%;
+	min-height:100vh;
 	display:flex;	
 	flex-direction: row;
 	gap: 10px;
 	padding: 15px;
 /*	flex-wrap: wrap-reverse;*/
+opacity:0;
+transform: translateY(-200px);
+transition: 500ms;
+}
 
-
+.containAnim{
+	opacity: 1;
+	transform: translateY(0px);
+	transition: 500ms;
 }
 
 .megaContent1{
@@ -31,9 +46,9 @@
 	gap: 35px;
 	padding: 15px;
 	
-	opacity: 0;
-	transform: translateX(-100px) ;
-	transition: height 350ms;
+	opacity: 1;
+/*	transform: translateX(-100px) ;*/
+	transition: 350ms;
 	
 	
 }
@@ -80,8 +95,8 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	gap: 15px;
-	opacity: 0;
-	transform: translateX(100px);
+	opacity: 1;
+/*	transform: translateX(100px);*/
 	transition: 350ms;
 }
 
@@ -239,6 +254,7 @@
 	background-size: 100% 100%;
 	background-blend-mode: darken;
 	background-color: rgba(0, 0, 0, 0.3);
+	background-repeat: no-repeat;
 	border: 2px solid whitesmoke;
 	border-radius: 15px;
 	display: flex;
@@ -265,22 +281,22 @@
 	
 }
 
-.animBlock1,.animBlock2,.animBlock3{
+/*.animBlock1,.animBlock2,.animBlock3{
 	height: auto;
 	opacity: 1;
 	transform: translateX(0px) translateY(0px);
 	transition: 350ms;
-}
+}*/
 
 .blockShadow{
 /*	box-shadow: inset 5px 5px 15px whitesmoke;*/
 /*background-color: rgba(256, 256, 256, 0.2);*/
-transform:scale(1.1);
+transform:scale(1.05);
 	transition: 250ms linear;
 }
 
 @media screen and (max-width:978px){
-	.megaContainer{
+	.megaContentContainer{
 		padding: 10px;
 		flex-direction: column;
 		gap: 15px;
